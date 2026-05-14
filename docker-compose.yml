@@ -1,0 +1,23 @@
+version: "3.9"
+services:
+  backend:
+    build: .
+    command: uvicorn app:app --host 0.0.0.0 --port 8000
+    ports:
+      - "8000:8000"
+    environment:
+      - OPENAI_API_KEY
+      - GOOGLE_APPLICATION_CREDENTIALS
+      - DRIVE_FOLDER_ID
+  frontend:
+    build: .
+    command: streamlit run streamlit_app.py --server.port 8501 --server.address 0.0.0.0
+    ports:
+      - "8501:8501"
+    environment:
+      - BACKEND_URL=http://backend:8000
+      - OPENAI_API_KEY
+      - GOOGLE_APPLICATION_CREDENTIALS
+      - DRIVE_FOLDER_ID
+    depends_on:
+      - backend
