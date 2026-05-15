@@ -12,7 +12,7 @@ RUN apt-get update \
         libtiff5-dev \
         libwebp-dev \
         libopenjp2-7-dev \
-        libfreetype6-dev \
+        libfreetype-dev \
         liblcms2-dev \
         pkg-config \
     && rm -rf /var/lib/apt/lists/* \
